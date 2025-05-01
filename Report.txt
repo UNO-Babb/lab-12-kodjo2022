@@ -1,44 +1,63 @@
-Name:
+Name: kodjo
 
-Number of elements:
+Number of elements: 1000
 
 Bubble Sort
-Sorted:
-Reversed:
-Random:
+Sorted: 0.0268 seconds
+Reversed: 0.0556 seconds
+Random: 0.0434 seconds
 
 Bubble Sort Early Exit
-Sorted:
-Reversed:
-Random:
+Sorted: 0.000065 seconds
+Reversed: 0.0559 seconds
+Random: 0.0462 seconds
 
 Selection Sort
-Sorted:
-Reversed:
-Random:
+Sorted: 0.0194 seconds
+Reversed:  0.0204 seconds
+Random: 0.0198 seconds
 
 Insertion Sort
-Sorted:
-Reversed:
-Random:
+Sorted: 0.0001 seconds
+Reversed: 0.0346 seconds
+Random: 0.0194 seconds
 
 Merge Sort
-Sorted:
-Reversed:
-Random:
+Sorted: 0.0015 seconds
+Reversed: 0.0014 seconds
+Random: 0.0017 seconds
 
 Questions to answer:
 1) What was the worst case scenario for any sorting technique?
+The worst case was for Bubble Sort (Regular and Early Exit) and Insertion Sort on the reversed list. These all took significantly longer in that scenario:
+Bubble Sort Reversed: ~0.0556 seconds
+Bubble Sort Early Exit Reversed: ~0.0559 seconds
+Insertion Sort Reversed: ~0.0346 seconds
+This is because these algorithms must perform the maximum number of comparisons and swaps/shifts when the input is in reverse order.
 
 
 2) The first 3 sorts have the same runtime of O(n^2). Why were the times different? Why would one be more efficient than the others?
-
+Even though Bubble Sort, Bubble Sort Early Exit, and Selection Sort are all O(n²), their actual behavior differs:
+Bubble Sort Early Exit is faster on already sorted input because it stops early when no swaps occur.
+Selection Sort does fewer swaps than Bubble Sort, making it slightly more efficient in practice.
+Bubble Sort performs more unnecessary comparisons and swaps even if the list is nearly sorted.
+Thus, the implementation details and optimizations affect real-world performance despite the same theoretical complexity.
 
 3) Why was merge sort so much more efficient?
-
+Merge Sort is a divide-and-conquer algorithm with a runtime of O(n log n). It:
+Divides the array into halves recursively,
+Merges sorted halves efficiently.
+This leads to consistently low run times regardless of input order. It doesn't waste time on unnecessary comparisons and works equally well for sorted, reversed, or random data.
 
 4) The built-in sorting technique for most programming languages is known as TimSort.
 This is a merge sort until the arrays have fewer than 10 elements, then it does an insertion sort. Why would this be useful?
-
+This hybrid strategy is useful because:
+Insertion Sort is extremely fast for small arrays due to low overhead.
+Merge Sort is efficient for large datasets.
+Combining both takes advantage of the strengths of each algorithm, improving performance in real-world, partially sorted data.
 
 5) What issues can you see with a recursive sorting technique like merge sort?
+High memory usage: It requires O(n) additional space for merging.
+Recursive depth: Deep recursion can lead to a stack overflow on very large arrays unless optimized.
+Overhead: For small arrays, recursion overhead makes it slower than simpler sorts like insertion sort.
+
